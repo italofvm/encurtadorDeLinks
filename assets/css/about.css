@@ -1,0 +1,47 @@
+.about__container {
+  background: var(--cor-cinza-médio);
+  margin: -5rem;
+  padding-bottom: 10rem;
+}
+
+.about__container .main__content {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.about__container .main__content h2 {
+  font-size: 3.2rem;
+  width: 40%;
+  text-align: center;
+  padding: 7rem 0 7rem 0;
+}
+
+/* Style dos cards */
+
+.about__container .about__cards {
+  align-items: center;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.main__content .about__cards .card {
+  width: 100%;
+}
+
+.main__content .about__cards .card img {
+  height: 20rem;
+}
+
+.main__content .about__cards .card h3 {
+  font-size: 2rem;
+  padding: 1.5rem 0;
+}
+
+.main__content .about__cards .card p {
+  font-size: 1.6rem;
+  font-weight: 300;
+  line-height: 1.8;
+  width: 90%;
+  height: 10rem;
+}

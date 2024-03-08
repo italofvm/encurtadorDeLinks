@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --cor-branco: #fff; /* Cor branca */
+  --cor-cinza-claro: #e5e5e5; /* Cor cinza claro */
+  --cor-cinza-médio: #f0f1f6; /* Cor cinza médio */
+  --cor-preto: #000; /* Cor preta */
+  --cor-azul-escuro: #1d2730; /* Cor azul escuro */
+  --cor-azul-cintilante: #07c9c9; /* Cor azul cintilante */
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  font-family: "Roboto", sans-serif;
+}
+
+.flex {
+  display: flex;
+}
+
+a {
+  text-decoration: none;
+  font-size: 1.8rem;
+}
+
+ul li {
+  list-style: none;
+}

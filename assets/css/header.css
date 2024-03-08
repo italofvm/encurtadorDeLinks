@@ -1,0 +1,41 @@
+header {
+  align-items: center;
+  justify-content: space-between;
+  gap: 5rem;
+  padding: 2rem 3rem;
+}
+
+header .content__links {
+  gap: 2rem;
+}
+
+header .content__links li a {
+  color: var(--cor-azul-escuro);
+  font-size: 2rem;
+  position: relative;
+  padding: 1rem;
+}
+
+header .content__links li a::after {
+  content: "";
+  position: absolute;
+  bottom: 0rem;
+  left: 100%;
+  width: 0;
+  height: 0.2rem;
+  background: var(--cor-azul-cintilante);
+  transition: all 300ms ease-in-out;
+}
+
+header .content__links li a:hover::after {
+  width: 80%;
+  left: 10%;
+}
+
+header .logo {
+  font-size: 3.2rem;
+}
+
+header .logo > span {
+  color: var(--cor-azul-cintilante);
+}

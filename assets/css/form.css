@@ -1,0 +1,45 @@
+section {
+  justify-content: center;
+  padding-top: 5rem;
+}
+
+section .link__form {
+  background: var(--cor-azul-cintilante);
+  border-radius: 1rem;
+  padding: 3rem 5rem;
+  width: 80%;
+}
+
+section .link__form {
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+section .link__form > input {
+  background: #06b6b6;
+  color: var(--cor-branco);
+
+  border-radius: 0.5rem;
+  border: none;
+
+  flex: 2;
+  font-size: 1.6rem;
+
+  padding: 1.5rem;
+  outline: none;
+}
+
+section .link__form > input::placeholder {
+  color: var(--cor-branco);
+  font-size: 1.8rem;
+}
+
+section .link__form > button {
+  background-color: var(--cor-azul-escuro);
+  color: var(--cor-branco);
+}
+
+section .link__form:focus-within {
+  outline: 2px solid var(--cor-azul-escuro);
+}
