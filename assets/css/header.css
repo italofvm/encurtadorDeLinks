@@ -39,3 +39,9 @@ header .logo {
 header .logo > span {
   color: var(--cor-azul-cintilante);
 }
+
+@media only screen and (max-width: 768px) {
+  .menu-desktop {
+    display: none;
+  }
+}

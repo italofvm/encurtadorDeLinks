@@ -21,6 +21,10 @@
   <link rel="stylesheet" href="/assets/css/home.css">
   <link rel="stylesheet" href="/assets/css/form.css">
   <link rel="stylesheet" href="/assets/css/about.css">
+  <link rel="stylesheet" href="/assets/css/menu-mobile.css">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="./assets/img/codigo.png" type="image/x-icon">
   <title>Encurtador</title>
 </head>
 
@@ -28,12 +32,30 @@
 
   <header class="flex main__content">
     <strong class="logo"><span>E</span>ncurtado<span>R</span></strong>
-    <nav class="container__links">
+    <nav class="container__links menu-desktop">
       <ul class="content__links flex">
         <li><a href="#">Encurtar</a></li>
         <li><a href="#">Preços</a></li>
       </ul>
     </nav>
+
+    <!-- Menu Mobile -->
+
+    <div class="btn-abrir-menu" id="btn-menu">
+      <i class="ph ph-list"></i>
+    </div>
+
+    <div class="menu-mobile" id="menu-mobile">
+      <div class="btn-fechar">
+        <i class="ph ph-x"></i>
+      </div>
+      <nav class="container__links">
+        <ul class="content__links">
+          <li><a href="#urlInput">Encurtar</a></li>
+          <li><a href="#">Preços</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
 
@@ -90,7 +112,8 @@
     </div>
   </footer>
 
-  <script src="./assets/js/script.js"></script>
+  <script type="module" src="assets/js/main.js"></script>
+  <script type="module" src="assets/js/encurtador.js"></script>
 </body>
 
 </html>

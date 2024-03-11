@@ -26,7 +26,7 @@
 }
 
 .main__content .about__cards .card {
-  width: 100%;
+  width: 35rem;
 }
 
 .main__content .about__cards .card img {
@@ -44,4 +44,37 @@
   line-height: 1.8;
   width: 90%;
   height: 10rem;
+}
+
+/* Version Tablet */
+
+@media screen and (max-width: 768px) {
+  .about__container .main__content h2 {
+    font-size: 2.5rem;
+    width: 50%;
+  }
+
+  .about__container .about__cards {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .main__content .about__cards .card {
+    font-size: 2.5rem;
+    width: 35rem;
+  }
+
+  .main__content .about__cards .card p {
+    width: auto;
+  }
+}
+
+/* Version Mobile */
+
+@media screen and (max-width: 480px) {
+  .about__container .main__content h2 {
+    font-size: 2rem;
+    width: 70%;
+  }
 }

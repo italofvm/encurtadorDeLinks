@@ -22,7 +22,12 @@ function encurtarUrl(url) {
     headers: headers,
     body: JSON.stringify(data),
   })
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Erro na requisição: " + response.status);
+      }
+      return response.json();
+    })
     .then((data) => {
       document.getElementById("urlInput").value = data.link;
       linkShortened = true;
@@ -39,6 +44,31 @@ document.getElementById("encurtarBtn").addEventListener("click", function () {
     encurtarUrl(url);
   } else {
     alert("Por favor, insira uma URL.");
+  }
+});
+
+//---------------------------------------------------------------
+document.getElementById("urlInput").addEventListener("click", function () {
+  // Verifica se o link foi encurtado antes de tentar copiá-lo
+  if (linkShortened) {
+    // Guarda o valor original do campo de input
+    const originalValue = this.value;
+
+    // Copia o valor do campo de input para a área de transferência
+    navigator.clipboard
+      .writeText(originalValue)
+      .then(() => {
+        // Altera o valor do campo de input para "Link copiado"
+        this.value = "Link copiado";
+
+        // Define um temporizador para reverter o valor do campo de input após 2 segundos
+        setTimeout(() => {
+          this.value = originalValue;
+        }, 2000); // 2000 milissegundos = 2 segundos
+      })
+      .catch((err) => {
+        console.error("Erro ao copiar o texto: ", err);
+      });
   }
 });
 

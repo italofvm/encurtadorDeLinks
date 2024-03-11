@@ -8,9 +8,7 @@ section .link__form {
   border-radius: 1rem;
   padding: 3rem 5rem;
   width: 80%;
-}
 
-section .link__form {
   align-items: center;
   justify-content: center;
   gap: 3rem;
@@ -42,4 +40,16 @@ section .link__form > button {
 
 section .link__form:focus-within {
   outline: 2px solid var(--cor-azul-escuro);
+}
+
+/* Version Tablet */
+@media screen and (max-width: 768px) {
+  section .link__form {
+    flex-direction: column;
+  }
+
+  section .link__form > input,
+  button {
+    width: 100%;
+  }
 }

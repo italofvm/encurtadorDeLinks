@@ -30,3 +30,33 @@
   background: var(--cor-azul-cintilante);
   color: var(--cor-branco);
 }
+
+@media screen and (max-width: 768px) {
+  .home__container {
+    padding: 3rem;
+  }
+  .home__title > h1 {
+    font-size: 3.8rem;
+    width: 50%;
+  }
+
+  .home__title > p {
+    width: 60%;
+  }
+  .home__container > img {
+    display: none;
+  }
+}
+
+/* Version Mobile */
+
+@media screen and (max-width: 480px) {
+  .home__title > h1 {
+    font-size: 3.8rem;
+    width: auto;
+  }
+
+  .home__title > p {
+    width: auto;
+  }
+}
