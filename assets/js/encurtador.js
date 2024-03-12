@@ -1,98 +1,62 @@
-let linkShortened = false;
-
-function encurtarUrl(url) {
-  const apiKey = "9c93f8bb0b2d87d1dec3952b52432f1bffd70e90";
-  const apiUrl = `https://api-ssl.bitly.com/v4/shorten`;
-
-  // Configuração da requisição
-  const data = {
-    long_url: url,
-    domain: "bit.ly",
-  };
-
-  // Configuração dos cabeçalhos da requisição
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${apiKey}`,
-  };
-
-  // Fazendo a requisição para a API do Bitly
-  fetch(apiUrl, {
+// Função para encurtar a URL utilizando a API de encurtamento
+async function encurtarUrl(urlOriginal) {
+  const endpoint = "https://api.encurtador.dev/encurtamentos";
+  const dados = { url: urlOriginal };
+  const opcoes = {
     method: "POST",
-    headers: headers,
-    body: JSON.stringify(data),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Erro na requisição: " + response.status);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      document.getElementById("urlInput").value = data.link;
-      linkShortened = true;
-    })
-    .catch((error) => {
-      console.error("Erro na requisição", error);
-    });
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(dados),
+  };
+
+  try {
+    const resposta = await fetch(endpoint, opcoes);
+    if (resposta.ok) {
+      const resultado = await resposta.json();
+      return resultado.urlEncurtada;
+    } else {
+      console.error(`Erro ao encurtar URL: ${resposta.status}`);
+      return null;
+    }
+  } catch (erro) {
+    console.error("Erro de conexão:", erro);
+    return null;
+  }
 }
 
-//---------------------------------------------------------------
-document.getElementById("encurtarBtn").addEventListener("click", function () {
-  const url = document.getElementById("urlInput").value;
-  if (url) {
-    encurtarUrl(url);
-  } else {
+// Função para lidar com o evento de clique no botão de encurtar URL
+async function handleClickEcurtarBtn() {
+  const urlInput = document.getElementById("urlInput");
+  const urlOriginal = urlInput.value;
+
+  if (!urlOriginal) {
     alert("Por favor, insira uma URL.");
+    return;
   }
-});
 
-//---------------------------------------------------------------
-document.getElementById("urlInput").addEventListener("click", function () {
-  // Verifica se o link foi encurtado antes de tentar copiá-lo
-  if (linkShortened) {
-    // Guarda o valor original do campo de input
-    const originalValue = this.value;
+  const urlEncurtada = await encurtarUrl(urlOriginal);
 
-    // Copia o valor do campo de input para a área de transferência
-    navigator.clipboard
-      .writeText(originalValue)
-      .then(() => {
-        // Altera o valor do campo de input para "Link copiado"
-        this.value = "Link copiado";
-
-        // Define um temporizador para reverter o valor do campo de input após 2 segundos
-        setTimeout(() => {
-          this.value = originalValue;
-        }, 2000); // 2000 milissegundos = 2 segundos
-      })
-      .catch((err) => {
-        console.error("Erro ao copiar o texto: ", err);
-      });
+  if (!urlEncurtada) {
+    alert("Não foi possível encurtar a URL. Por favor, tente novamente.");
+    return;
   }
-});
 
-//---------------------------------------------------------------
-document.getElementById("urlInput").addEventListener("click", function () {
-  // Verifica se o link foi encurtado antes de tentar copiá-lo
-  if (linkShortened) {
-    // Guarda o valor original do campo de input
-    const originalValue = this.value;
+  // Exibe a mensagem de sucesso dentro do campo de input
+  urlInput.value = "URL encurtada copiada para a área de transferência!";
 
-    // Copia o valor do campo de input para a área de transferência
-    navigator.clipboard
-      .writeText(originalValue)
-      .then(() => {
-        // Altera o valor do campo de input para "Link copiado"
-        this.value = "Link copiado";
-
-        // Define um temporizador para reverter o valor do campo de input após 2 segundos
-        setTimeout(() => {
-          this.value = originalValue;
-        }, 2000); // 2000 milissegundos = 2 segundos
-      })
-      .catch((err) => {
-        console.error("Erro ao copiar o texto: ", err);
-      });
+  try {
+    await navigator.clipboard.writeText(urlEncurtada);
+    setTimeout(() => {
+      urlInput.value = urlEncurtada;
+    }, 3000); // 3000 milissegundos = 3 segundos
+  } catch (err) {
+    console.error("Erro ao copiar a URL:", err);
+    alert("Não foi possível copiar a URL. Por favor, tente novamente.");
   }
-});
+}
+
+// Adiciona o evento de clique ao botão de encurtar URL
+document
+  .getElementById("encurtarBtn")
+  .addEventListener("click", handleClickEcurtarBtn);
